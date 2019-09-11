@@ -22,14 +22,6 @@ app = Flask(__name__, template_folder = 'html_code')
 #Password
 secretpasskey = '1234'
 app.debug = True
-#check for valid int
-def ValidInt(s):
-    try: 
-        int(s)
-        return True
-    except ValueError:
-        return False
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -63,7 +55,7 @@ def toggle():
 		return jsonify({'error':'Not a valid Request'})
 	pin = content['pin']
 	allowedpins = [11,10,4,9,27,22,17,16]
-	if ValidInt(int(pin)):
+	if pin.isdigit():
 		pin = int(pin)
 		if pin not in allowedpins:
 			return jsonify({'error':'not a valid pin'})
