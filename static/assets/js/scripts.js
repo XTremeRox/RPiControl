@@ -18,7 +18,7 @@ document.addEventListener('init', function(event) {
                 async: false,
                 success: function(data){
                     if(data.status === 'alive'){
-                        ons.notification.alert('Device Online! Wait for Status');
+                        ons.notification.alert('Device Online!');
                         document.querySelector('#myNavigator').pushPage('dashboard.html', {data: {title: 'Dashboard'}});
                     }else{
                         console.log('http://'+hostname+':'+port+'/live');
@@ -45,11 +45,52 @@ document.addEventListener('init', function(event) {
       incvolt = $('ons-switch')[4];
       decvolt = $('ons-switch')[5];
       htstop = $('ons-switch')[6];
+      test = $('ons-switch')[7];
 
       memory.addEventListener('change', function(){
           $("#reading").toggle();
           //todo - $ajax.
       });
+      mainswitch.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    voltinc.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    htstart.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    incvolt.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    decvolt.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    htstop.addEventListener('change', function(){
+        //todo - $ajax.
+    });
+    test.addEventListener('change', function(){
+        obj = {pin : "16", secret : secret} ;
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
+    });
       pins = [11,10,4,9,27,22,17,16];
       //todo - $ajax-status of all switches
       $.ajax({
@@ -59,7 +100,7 @@ document.addEventListener('init', function(event) {
         contentType: 'application/json',
         async: false,
         success: function(data){
-            for (var i = 0; i < pins.length-1; i++) {
+            for (var i = 0; i < pins.length; i++) {
                 if(data[(pins[i].toString())] == "on"){
                     $('ons-switch')[i].checked = true;
                 }else{
