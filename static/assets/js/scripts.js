@@ -43,13 +43,22 @@ document.addEventListener('init', function(event) {
       var hostname = document.getElementById('hostname').value;
       var port = document.getElementById('port').value;
       var secret = document.getElementById('secret').value;
+      //pin and DOM position
+      mainswitchpin = "11";
       mainswitch = $('ons-switch')[0];
+      voltincpin = "10";
       voltinc = $('ons-switch')[1];
+      memorypin = "4";
       memory = $('ons-switch')[2];
+      htstartpin="9";
       htstart = $('ons-switch')[3];
+      incvoltpin="27";
       incvolt = $('ons-switch')[4];
+      decvoltpin="22";
       decvolt = $('ons-switch')[5];
+      htstopin = "17"
       htstop = $('ons-switch')[6];
+      testpin = "16";
       test = $('ons-switch')[7];
 
       memory.addEventListener('change', function(){
@@ -57,25 +66,151 @@ document.addEventListener('init', function(event) {
           //todo - $ajax.
       });
       mainswitch.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : mainswitch, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     voltinc.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : voltincpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     htstart.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : htstartpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     incvolt.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : incvoltpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     decvolt.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : decvoltpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     htstop.addEventListener('change', function(){
-        //todo - $ajax.
+        obj = {pin : htstopin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: false,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
     });
     test.addEventListener('change', function(){
-        obj = {pin : "16", secret : secret} ;
+        obj = {pin : testpin, secret : secret} ;
         load();
         $.ajax({
             url: 'http://'+hostname+':'+port+'/toggle',
