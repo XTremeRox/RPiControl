@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="{{url_for('static', filename = 'onsenui/css/onsenui.css' )}}">
+  <link rel="stylesheet" href="{{url_for('static', filename = 'onsenui/css/onsen-css-components.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename = 'assets/css/styles.css')}}">
+  <script src="{{url_for('static', filename = 'onsenui/js/onsenui.min.js')}}"></script>
+  <script src="{{url_for('static', filename = 'assets/js/jquery.min.js')}}"></script>
+</head>
+<body>
+  <ons-navigator id="myNavigator" page="setup.html"></ons-navigator>
+
+  <template id="setup.html">
+    <ons-page id="setup">
+      <ons-toolbar>
+        <div class="center">Setup Connection</div>
+      </ons-toolbar>
+      <div style="text-align: center; margin-top: 30px;">
+        <p>
+          <ons-input id="hostname" modifier="underbar" placeholder="Host IP" value="192.168.2.50" float></ons-input>
+        </p>
+        <p>
+          <ons-input id="port" modifier="underbar" type="text" placeholder="Port" value="5000" float></ons-input>
+        </p>
+        <p>
+            <ons-input id="secret" modifier="underbar" type="password" placeholder="Secret Code" float></ons-input>
+          </p>
+        <p style="margin-top: 30px;">
+          <ons-button id="go-button">Go</ons-button>
+        </p>
+      </div>
+      <ons-fab id="goFS" position="bottom right">
+          <ons-icon
+            icon="md-fullscreen">
+          </ons-icon>
+      </ons-fab>
+      <ons-fab id="noFS" style="background-color: aqua;" position="bottom right">
+          <ons-icon
+            icon="md-fullscreen">
+          </ons-icon>
+      </ons-fab>
+      <script>
+        var goFS = document.getElementById("goFS");
+        var noFS = document.getElementById("noFS");
+        noFS.hide();
+        goFS.addEventListener("click", function() {
+            document.body.requestFullscreen();
+            goFS.toggle();
+            noFS.toggle();
+        });
+        noFS.addEventListener("click", function() {
+            document.exitFullscreen();
+            goFS.toggle();
+            noFS.toggle();
+        });
+      </script>
+    </ons-page>
+  </template>
+  
+  <template id="dashboard.html">
+    <ons-page id="dashboard">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Setup</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div style="text-align: center;">
+       <ons-list>
+          <ons-list-item>
+            <div class="center">
+              <b>MAIN SWITCH(gp11)</b>
+            </div>
+            <div class="right">
+              <ons-switch modifier="material" checked></ons-switch>
+            </div>
+          </ons-list-item>
+          <ons-list-item>
+            <div class="center">
+              <b>VOLT INC MODE(gp10)</b>
+            </div>
+            <div class="right">
+              <ons-switch modifier="material" checked></ons-switch>
+            </div>
+          </ons-list-item>
+          
+       </ons-list>
+        <div id="reading" style="text-align : center; margin-top: 10px;display:none;">
+          <h1 style="font-size: 54px; color:green;">23.5 Kv</h1>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+</body>
+<script src="{{url_for('static', filename = 'assets/js/scripts.js')}}"></script>
+</html>
