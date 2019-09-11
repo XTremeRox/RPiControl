@@ -56,7 +56,7 @@ def reading():
 	#TODO - Get analog reading value from 
 	return jsonify({'reading':'22.5'})
 @app.route('/toggle', methods=['POST'])
-def toggle(name):
+def toggle():
 	#change pin state and authentication using POST
 	content = request.get_json(silent=True)
 	if content['secret'] != secretpasskey:
