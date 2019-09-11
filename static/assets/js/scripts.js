@@ -58,7 +58,7 @@ document.addEventListener('init', function(event) {
         async: false,
         success: function(data){
             for (var i = 0; i < pins.length-1; i++) {
-                if data[pin] == "on"{
+                if(data[pin] == "on"){
                     $('ons-switch')[i].checked = false;
                 }else{
                     $('ons-switch')[i].checked = true;
