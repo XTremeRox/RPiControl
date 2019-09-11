@@ -66,6 +66,7 @@ document.addEventListener('init', function(event) {
             ons.notification.alert('Status Updated!');
         },
         error: function(error){
+            console.log('http://'+hostname+':'+port+'/status');
             console.log(error);
              ons.notification.alert('Unable to get status!');
         }
