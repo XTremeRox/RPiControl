@@ -67,7 +67,7 @@ def toggle():
 		pin = int(pin)
 		if pin not in allowedpins:
 			return jsonify({'error':'not a valid pin'})
-		GPIO.output(pin, GPIO.HIGH) if GPIO.input(pin) == 0 else GPIO.output(pin, GPIO.HIGH)
+		GPIO.output(pin, GPIO.HIGH) if GPIO.input(pin) == 0 else GPIO.output(pin, GPIO.LOW)
 	else:
 		return jsonify({'error':'not a valid pin'})
 	data = {'success':'1'}
