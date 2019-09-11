@@ -61,9 +61,9 @@ document.addEventListener('init', function(event) {
         success: function(data){
             for (var i = 0; i < pins.length-1; i++) {
                 if(data[(pins[i].toString())] == "on"){
-                    $('ons-switch')[i].checked = false;
-                }else{
                     $('ons-switch')[i].checked = true;
+                }else{
+                    $('ons-switch')[i].checked = false;
                 }
             }
             ons.notification.alert('Status Updated!');
