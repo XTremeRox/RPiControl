@@ -11,6 +11,13 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(16,GPIO.OUT)
+GPIO.setup(11,GPIO.OUT)
+GPIO.setup(10,GPIO.OUT)
+GPIO.setup(4,GPIO.OUT)
+GPIO.setup(9,GPIO.OUT)
+GPIO.setup(27,GPIO.OUT)
+GPIO.setup(22,GPIO.OUT)
+GPIO.setup(17,GPIO.OUT)
 app = Flask(__name__, template_folder = 'html_code')
 #Password
 secretpasskey = '1234'
@@ -51,7 +58,7 @@ def switch(name):
 	else:
 		print("LED off")
 		GPIO.output(16,GPIO.LOW)
-	return "hello,"+name;
+	return "hello,"+name
 if __name__ =="__main__":
 	#http_server = WSGIServer(('0.0.0.0', 5000), app)
 	print("Server Started waiting for request")
