@@ -35,6 +35,13 @@ document.addEventListener('init', function(event) {
       };
     } else if (page.id === 'dashboard') {
       page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      mainswitch = $('ons-switch')[0];
+      voltinc = $('ons-switch')[1];
+      memory = $('ons-switch')[2];
+      htstart = $('ons-switch')[3];
+      incvolt = $('ons-switch')[4];
+      decvolt = $('ons-switch')[5];
+      htstop = $('ons-switch')[5];
     }
 });
 
