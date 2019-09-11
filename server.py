@@ -43,7 +43,7 @@ def status():
 	response = {}
 	pins = [11,10,4,9,27,22,17]
 	for pin in pins:
-		response[pin] = 'on' if GPIO.input(11) == 1 else 'off'
+		response[pin] = 'on' if GPIO.input(pin) == 1 else 'off'
 	return jsonify(response)
 @app.route('/reading', methods=['GET'])
 def reading():
@@ -51,6 +51,7 @@ def reading():
 	return jsonify({'reading':'22.5'})
 @app.route('/switch/<name>')
 def switch(name):
+	#TODO change pin state and authentication using POST
 	print("passed : ",name)
 	if name=="on":
 		print("LED on")
