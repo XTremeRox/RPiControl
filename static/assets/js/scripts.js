@@ -51,7 +51,6 @@ document.addEventListener('init', function(event) {
       //todo - $ajax-status of all switches
       $.ajax({
         url: 'http://'+hostname+':'+port+'/status',
-        crossDomain: true,
         type: "GET",
         dataType: "json",
         contentType: 'application/json',
@@ -67,6 +66,7 @@ document.addEventListener('init', function(event) {
             ons.notification.alert('Status Updated!');
         },
         error: function(error){
+            console.log(error);
              ons.notification.alert('Unable to get status!');
         }
     });
