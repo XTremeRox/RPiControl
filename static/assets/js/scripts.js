@@ -35,6 +35,9 @@ document.addEventListener('init', function(event) {
       };
     } else if (page.id === 'dashboard') {
       page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      var hostname = document.getElementById('hostname').value;
+      var port = document.getElementById('port').value;
+      var secret = document.getElementById('secret').value;
       mainswitch = $('ons-switch')[0];
       voltinc = $('ons-switch')[1];
       memory = $('ons-switch')[2];
@@ -66,8 +69,6 @@ document.addEventListener('init', function(event) {
             ons.notification.alert('Status Updated!');
         },
         error: function(error){
-            console.log('http://'+hostname+':'+port+'/status');
-            console.log(error);
              ons.notification.alert('Unable to get status!');
         }
     });
