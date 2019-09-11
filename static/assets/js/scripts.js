@@ -18,7 +18,7 @@ document.addEventListener('init', function(event) {
                 async: false,
                 success: function(data){
                     if(data.status === 'alive'){
-                        ons.notification.alert('Device Alive!');
+                        ons.notification.alert('Device Online! Wait for Status');
                         document.querySelector('#myNavigator').pushPage('dashboard.html', {data: {title: 'Dashboard'}});
                     }else{
                         console.log('http://'+hostname+':'+port+'/live');
@@ -45,7 +45,31 @@ document.addEventListener('init', function(event) {
 
       memory.addEventListener('change', function(){
           $("#reading").toggle();
-      })
+          //todo - $ajax.
+      });
+      pins = [11,10,4,9,27,22,17,16];
+      //todo - $ajax-status of all switches
+      $.ajax({
+        url: 'http://'+hostname+':'+port+'/status',
+        crossDomain: true,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json',
+        async: false,
+        success: function(data){
+            for (var i = 0; i < pins.length-1; i++) {
+                if data[pin] == "on"{
+                    $('ons-switch')[i].checked = false;
+                }else{
+                    $('ons-switch')[i].checked = true;
+                }
+            }
+            ons.notification.alert('Status Updated!');
+        },
+        error: function(error){
+             ons.notification.alert('Unable to get status!');
+        }
+    });
     }
 });
 
