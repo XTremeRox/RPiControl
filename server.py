@@ -30,6 +30,18 @@ def live():
 	response = jsonify(data)
 	#response.headers.add('Access-Control-Allow-Origin', '*')
 	return response
+@app.route('/status', methods=['GET'])
+def status():
+	#Get state of all pins(11,10,4,9,27,22,17)
+	response = {}
+	pins = [11,10,4,9,27,22,17]
+	for pin in pins:
+		response[pin] = 'on' if GPIO.input(11) == 1 else 'off'
+	return jsonify(response)
+@app.route('/reading', methods=['GET'])
+def reading():
+	#TODO - Get analog reading value from 
+	return jsonify({'reading':'22.5'})
 @app.route('/switch/<name>')
 def switch(name):
 	print("passed : ",name)
