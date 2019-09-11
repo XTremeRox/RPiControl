@@ -9,6 +9,9 @@
   <script src="{{url_for('static', filename = 'assets/js/jquery.min.js')}}"></script>
 </head>
 <body>
+  <div id="loading">
+      <img id="loading-image" src="{{url_for('static', filename = 'assets/img/loading.gif')}}" alt="Loading..." />
+    </div>
   <ons-navigator id="myNavigator" page="setup.html"></ons-navigator>
 
   <template id="setup.html">

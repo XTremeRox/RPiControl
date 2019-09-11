@@ -1,4 +1,9 @@
-
+function loaded(){ 
+    document.getElementById("loading").style.display = "none" ;
+}
+function load(){
+    document.getElementById("loading").style.display = "block" ;
+}
 document.addEventListener('init', function(event) {
     var page = event.target;
     if (page.id === 'setup') {
@@ -71,6 +76,7 @@ document.addEventListener('init', function(event) {
     });
     test.addEventListener('change', function(){
         obj = {pin : "16", secret : secret} ;
+        load();
         $.ajax({
             url: 'http://'+hostname+':'+port+'/toggle',
             crossDomain: true,
@@ -81,9 +87,10 @@ document.addEventListener('init', function(event) {
             async: false,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
-                    
+                    loaded();
                 }else{
                     ons.notification.alert('Something went Wrong!');
+                    loaded();
                 }
             },
             error: function(error){
