@@ -41,7 +41,11 @@ document.addEventListener('init', function(event) {
       htstart = $('ons-switch')[3];
       incvolt = $('ons-switch')[4];
       decvolt = $('ons-switch')[5];
-      htstop = $('ons-switch')[5];
+      htstop = $('ons-switch')[6];
+
+      memory.addEventListener('change', function(){
+          $("#reading").toggle();
+      })
     }
 });
 
