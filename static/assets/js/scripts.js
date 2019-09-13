@@ -75,7 +75,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -99,7 +99,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -123,7 +123,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -147,7 +147,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -171,7 +171,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -195,7 +195,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -219,7 +219,7 @@ document.addEventListener('init', function(event) {
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify(obj),
-            async: false,
+            async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
                     loaded();
@@ -240,7 +240,7 @@ document.addEventListener('init', function(event) {
         type: "GET",
         dataType: "json",
         contentType: 'application/json',
-        async: false,
+        async: true,
         success: function(data){
             for (var i = 0; i < pins.length; i++) {
                 if(data[(pins[i].toString())] == "on"){
