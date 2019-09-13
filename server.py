@@ -47,6 +47,10 @@ def status():
 def reading():
 	#TODO - Get analog reading value from 
 	return jsonify({'reading':'22.5'})
+@app.route('/push', methods=['POST'])
+def push():
+	#TODO - Get pushrequest and activate for 50ms and set state to 0
+	pass
 @app.route('/toggle', methods=['POST'])
 def toggle():
 	#change pin state and authentication using POST
