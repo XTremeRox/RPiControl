@@ -1,15 +1,15 @@
-#! /usr/bin/python3
+#!/usr/bin/env python3
 # Author: Ramswaroop Soren(xtremerox)
 # GitHub : github.com/xtremerox
 # Simple flask app to serve Webapp to control GPIO
 # and take feedback from RPi
-from flask import Flask, request , jsonify, render_temppiplate
+from flask import Flask, request , jsonify, render_template
 import RPi.GPIO as GPIO
 import time
 import board
 import busio
 import adafruit_ads1x15.ads1115 as ADS
-import adafruit_ads1x15.analog_in as AnalogIn
+from adafruit_ads1x15.analog_in import AnalogIn
 #Production server settings 
 #from gevent.pywsgi import WSGIServer
 GPIO.setmode(GPIO.BCM)
