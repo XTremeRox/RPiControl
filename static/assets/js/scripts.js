@@ -91,6 +91,7 @@ document.addEventListener('init', function(event) {
             });
         }else{
             memorychange = 0;
+            $("#reading").toggle();
             loaded();
         }
       });
