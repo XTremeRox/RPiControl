@@ -26,18 +26,14 @@ GPIO.setup(5,GPIO.OUT) #memory_relay
 app = Flask(__name__, template_folder = 'html_code')
 #Password
 secretpasskey = '1234'
-app.debug = False
+app.debug = True
 @app.route('/')
 @app.route('/home')
 def home():
 	return render_template('index.html')
 @app.route('/live', methods=['POST'])
 def live():
-	content=''
-	try:
-		content = request.get_json(silent=True)
-	except:
-		return jsonify({'error':'Not a valid Request'})
+	content = request.get_json(silent=True)
 	if content['secret'] != secretpasskey:
 		return jsonify({'status':'dead'})
 	data = {'status':'alive'}
@@ -65,11 +61,7 @@ def reading():
 @app.route('/push', methods=['POST'])
 def push():
 	#Get pushrequest and activate for 30 reading and set state to 0 and return reading
-	content = ''
-	try:
-		content = request.get_json(silent=True)
-	except:
-		return jsonify({'error':'Not a valid Request'})
+	content = request.get_json(silent=True)
 	if content['secret'] != secretpasskey:
 		return jsonify({'error':'Not a valid Request'})
 	GPIO.output(5, GPIO.HIGH) #memory_relay high
@@ -79,11 +71,7 @@ def push():
 @app.route('/toggle', methods=['POST'])
 def toggle():
 	#change pin state and authentication using POST
-	content = ''
-	try:
-		content = request.get_json(silent=True)
-	except:
-		return jsonify({'error':'Not a valid Request'})
+	content = request.get_json(silent=True)
 	if content['secret'] != secretpasskey:
 		return jsonify({'error':'Not a valid Request'})
 	pin = content['pin']
