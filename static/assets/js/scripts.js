@@ -86,10 +86,12 @@ document.addEventListener('init', function(event) {
                 },
                 error: function(error){
                      ons.notification.alert('Device is offline!');
+                     loaded();
                 }
             });
         }else{
             memorychange = 0;
+            loaded();
         }
       });
       mainswitch.addEventListener('change', function(){
