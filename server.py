@@ -59,7 +59,7 @@ def reading():
 		sum+=channel.value
 	avg = str('%.4f'%(sum/30))
 	return jsonify({'reading':avg})
-@app.route('/push', methods=['POST'])
+@app.route('/push', methods=['GET'])
 def push():
 	#Get pushrequest and activate for 30 reading and set state to 0 and return reading
 	GPIO.output(5, GPIO.HIGH) #memory_relay high
