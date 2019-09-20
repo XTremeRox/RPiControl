@@ -60,32 +60,37 @@ document.addEventListener('init', function(event) {
       htstop = $('ons-switch')[6];
       testpin = "16";
       test = $('ons-switch')[7];
-
+      memorychange = 0
       memory.addEventListener('change', function(){
         load();
         obj = {secret : secret} ;
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/push',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('error') && data.reading){
-                    loaded();
-                    $('#reading').find('h1')[0].innerHTML=data.reading;
-                    $("#reading").toggle();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
+        if(memorychange == 0){
+            $.ajax({
+                url: 'http://'+hostname+':'+port+'/push',
+                crossDomain: true,
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                async: true,
+                success: function(data){
+                    if(!data.hasOwnProperty('error') && data.reading){
+                        loaded();
+                        $('#reading').find('h1')[0].innerHTML=data.reading;
+                        $("#reading").toggle();
+                        memorychange = 1;
+                    }else{
+                        ons.notification.alert('Something went Wrong!');
+                        loaded();
+                    }
+                },
+                error: function(error){
+                     ons.notification.alert('Device is offline!');
                 }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
+            });
+        }else{
+            memorychange = 0;
+        }
       });
       mainswitch.addEventListener('change', function(){
         obj = {pin : mainswitch, secret : secret} ;
