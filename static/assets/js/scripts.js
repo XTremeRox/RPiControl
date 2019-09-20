@@ -73,9 +73,9 @@ document.addEventListener('init', function(event) {
             data: JSON.stringify(obj),
             async: true,
             success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
+                if(!data.hasOwnProperty('error') && data.reading){
                     loaded();
-                    $('#reading').find('h1')[0].innerHTML=value;
+                    $('#reading').find('h1')[0].innerHTML=data.reading;
                     $("#reading").toggle();
                 }else{
                     ons.notification.alert('Something went Wrong!');
