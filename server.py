@@ -3,7 +3,7 @@
 # GitHub : github.com/xtremerox
 # Simple flask app to serve Webapp to control GPIO
 # and take feedback from RPi
-from flask import Flask, request , jsonify, render_template
+from flask import Flask, request , jsonify, render_temppiplate
 import RPi.GPIO as GPIO
 import time
 import board
