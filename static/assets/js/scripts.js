@@ -62,8 +62,30 @@ document.addEventListener('init', function(event) {
       test = $('ons-switch')[7];
 
       memory.addEventListener('change', function(){
-          $("#reading").toggle();
-          //todo - $ajax.
+        load();
+        obj = {secret : secret} ;
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/push',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    loaded();
+                    $('#reading').find('h1')[0].innerHTML=value;
+                    $("#reading").toggle();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
       });
       mainswitch.addEventListener('change', function(){
         obj = {pin : mainswitch, secret : secret} ;
