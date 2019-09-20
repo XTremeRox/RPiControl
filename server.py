@@ -26,7 +26,7 @@ GPIO.setup(5,GPIO.OUT) #memory_relay
 app = Flask(__name__, template_folder = 'html_code')
 #Password
 secretpasskey = '1234'
-app.debug = True
+app.debug = False
 @app.route('/')
 @app.route('/home')
 def home():
