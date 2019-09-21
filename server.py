@@ -75,7 +75,7 @@ def toggle():
 	if content['secret'] != secretpasskey:
 		return jsonify({'error':'Not a valid Request'})
 	pin = content['pin']
-	allowedpins = [11,10,4,9,27,22,17,16]
+	allowedpins = [11,10,5,9,27,22,17,16]
 	if pin.isdigit():
 		pin = int(pin)
 		if pin not in allowedpins:

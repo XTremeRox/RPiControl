@@ -45,39 +45,31 @@ document.addEventListener('init', function(event) {
       var secret = document.getElementById('secret').value;
       //pin and DOM position
       mainswitchpin = "11";
-      mainswitch = $('ons-switch')[0];
-      voltincpin = "10";
-      voltinc = $('ons-switch')[1];
-      memorypin = "4";
-      memory = $('ons-switch')[2];
+      mainswitch = $('#ms');
+      voltincmpin = "10";
+      voltincm = $('#inc_volt_mode');
+      voltincm.attr("disabled", true);
+      memorypin = "5";
+      memory = $('#memory_button');
+      memory.attr("disabled", true);
       htstartpin="9";
-      htstart = $('ons-switch')[3];
+      htstart = $('#ht_start');
+      htstart.attr("disabled", true);
       incvoltpin="27";
-      incvolt = $('ons-switch')[4];
+      incvolt = $('#inc_volt');
+      incvolt.attr("disabled", true);
       decvoltpin="22";
-      decvolt = $('ons-switch')[5];
+      decvolt = $('#dec_volt');
+      decvolt.attr("disabled", true);
       htstopin = "17"
-      htstop = $('ons-switch')[6];
+      htstop = $('#ht_stop');
+      htstop.attr("disabled", true);
       testpin = "16";
-      test = $('ons-switch')[7];
-      $('#ms').on('click', function(e) {
-        $('#ms').toggleClass("btntoggled"); 
-        e.preventDefault();
-    });
-      $('#memory_button').on('click', function(e) {
-        $('#memory_button').toggleClass("btntoggled"); 
-        e.preventDefault();
-    });
-      $('#dec_volt').on('click', function(e) {
-        $('#dec_volt').toggleClass("btntoggled"); 
-        e.preventDefault();
-    });
-      $('#inc_volt_mode').on('click', function(e) {
-        $('#inc_volt_mode').toggleClass("btntoggled"); 
-        e.preventDefault();
-    });
+      //status of switches
+      switches = []
+      //test = $('#led');
       memorychange = 0
-      memory.addEventListener('change', function(){
+      memory.on('click', function(){
         load();
         obj = {secret : secret} ;
         if(memorychange == 0){
@@ -94,6 +86,7 @@ document.addEventListener('init', function(event) {
                         loaded();
                         $('#reading').find('h1')[0].innerHTML=data.reading;
                         $("#reading").toggle();
+                        memory.toggleClass("btntoggled"); 
                         memorychange = 1;
                     }else{
                         ons.notification.alert('Something went Wrong!');
@@ -108,11 +101,12 @@ document.addEventListener('init', function(event) {
         }else{
             memorychange = 0;
             $("#reading").toggle();
+            memory.toggleClass("btntoggled"); 
             loaded();
         }
       });
-      mainswitch.addEventListener('change', function(){
-        obj = {pin : mainswitch, secret : secret} ;
+      mainswitch.on('click', function(e){
+        obj = {pin : mainswitchpin, secret : secret} ;
         load();
         $.ajax({
             url: 'http://'+hostname+':'+port+'/toggle',
@@ -124,6 +118,13 @@ document.addEventListener('init', function(event) {
             async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
+                    $('#ms').toggleClass("btntoggled"); 
+                    voltincm.attr("disabled", false);
+                    memory.attr("disabled", false);
+                    htstart.attr("disabled", false);
+                    incvolt.attr("disabled", false);
+                    decvolt.attr("disabled", false);
+                    htstop.attr("disabled", false);
                     loaded();
                 }else{
                     ons.notification.alert('Something went Wrong!');
@@ -132,175 +133,34 @@ document.addEventListener('init', function(event) {
             },
             error: function(error){
                  ons.notification.alert('Device is offline!');
+                 loaded();
             }
         });
+        e.preventDefault();
     });
-    voltinc.addEventListener('change', function(){
-        obj = {pin : voltincpin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-    htstart.addEventListener('change', function(){
-        obj = {pin : htstartpin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-    incvolt.addEventListener('change', function(){
-        obj = {pin : incvoltpin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-    decvolt.addEventListener('change', function(){
-        obj = {pin : decvoltpin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-    htstop.addEventListener('change', function(){
-        obj = {pin : htstopin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-    test.addEventListener('change', function(){
-        obj = {pin : testpin, secret : secret} ;
-        load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
-                }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-            }
-        });
-    });
-      pins = [11,10,4,9,27,22,17,16];
+    
+      pins = [11,10,5,9,27,22,17,16];
       //todo - $ajax-status of all switches
-      $.ajax({
-        url: 'http://'+hostname+':'+port+'/status',
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json',
-        async: true,
-        success: function(data){
-            for (var i = 0; i < pins.length; i++) {
-                if(data[(pins[i].toString())] == "on"){
-                    $('ons-switch')[i].checked = true;
-                }else{
-                    $('ons-switch')[i].checked = false;
-                }
-            }
-            ons.notification.alert('Status Updated!');
-        },
-        error: function(error){
-             ons.notification.alert('Unable to get status!');
-        }
-    });
+      //$.ajax({
+        //url: 'http://'+hostname+':'+port+'/status',
+        //type: "GET",
+        //dataType: "json",
+        //contentType: 'application/json',
+        //async: true,
+        //success: function(data){
+            //for (var i = 0; i < pins.length; i++) {
+                //if(data[(pins[i].toString())] == "on"){
+                    //$('ons-switch')[i].checked = true;
+                //}else{
+                    //$('ons-switch')[i].checked = false;
+                //}
+            //}
+            //ons.notification.alert('Status Updated!');
+        //},
+        //error: function(error){
+             //ons.notification.alert('Unable to get status!');
+        //}
+    //});
     }
 });
 

@@ -65,6 +65,12 @@ website: https://soren.in */
 }
 /* Use a media query to add a breakpoint at 800px: */
 @media screen and (max-width: 600px) {
+#loading-image {
+	position: absolute;
+	top: 30%;
+	left: 25%;
+	z-index: 100;
+	} 
 	.noselect {
 	  -webkit-touch-callout: none; /* iOS Safari */
 		-webkit-user-select: none; /* Safari */
