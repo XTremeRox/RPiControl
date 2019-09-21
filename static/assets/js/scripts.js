@@ -140,15 +140,35 @@ document.addEventListener('init', function(event) {
                 }
             });
         }else{
-            mainswitchchange = 0;
-            voltincm.attr("disabled", true);
-            memory.attr("disabled", true);
-            htstart.attr("disabled", true);
-            incvolt.attr("disabled", true);
-            decvolt.attr("disabled", true);
-            htstop.attr("disabled", true);
-            mainswitch.toggleClass("btntoggled"); 
-            loaded();
+            $.ajax({
+                url: 'http://'+hostname+':'+port+'/toggle',
+                crossDomain: true,
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                async: true,
+                success: function(data){
+                    if(!data.hasOwnProperty('err') && data.success == '1'){
+                        $('#ms').toggleClass("btntoggled"); 
+                        voltincm.attr("disabled", true);
+                        memory.attr("disabled", true);
+                        htstart.attr("disabled", true);
+                        incvolt.attr("disabled", true);
+                        decvolt.attr("disabled", true);
+                        htstop.attr("disabled", true);
+                        mainswitchchange = 0;
+                        loaded();
+                    }else{
+                        ons.notification.alert('Something went Wrong!');
+                        loaded();
+                    }
+                },
+                error: function(error){
+                     ons.notification.alert('Device is offline!');
+                     loaded();
+                }
+            });
         }
         e.preventDefault();
     });
