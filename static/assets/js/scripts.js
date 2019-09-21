@@ -60,6 +60,10 @@ document.addEventListener('init', function(event) {
       htstop = $('ons-switch')[6];
       testpin = "16";
       test = $('ons-switch')[7];
+      $('#ms').on('click', function(e) {
+        $('#ms').toggleClass("btntoggled"); 
+        e.preventDefault();
+    });
       memorychange = 0
       memory.addEventListener('change', function(){
         load();

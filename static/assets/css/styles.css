@@ -1,3 +1,9 @@
+/*Style Sheet for HVL Lab
+
+version: 0.1
+author: Ramswaroop Soren(xtremerox)
+email: admin@soren.in
+website: https://soren.in */
 .control{
 	margin : 10px 0;
 }
@@ -17,3 +23,94 @@
 	left: 45%;
 	z-index: 100
 } 
+.card-heading{
+	font-size:15px; 
+	font-weight:bold;
+}
+
+.btnpush{
+		height: 150px;
+		width: 150px;
+		background: url('../img/off.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+.btnpush:active{
+		height: 150px;
+		width: 150px;
+		background: url('../img/on.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+}
+
+.btntoggle{
+		color: white;
+		height: 150px;
+		width: 150px;
+		background: url('../img/off_strong.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+.btntoggled{
+		color: black;
+		height: 150px;
+		width: 150px;
+		background: url('../img/on_strong.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+}
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 600px) {
+	.noselect {
+	  -webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		 -khtml-user-select: none; /* Konqueror HTML */
+		   -moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+				user-select: none; /* Non-prefixed version, currently
+									  supported by Chrome and Opera */
+	}
+  .btnpush{
+		height: 70px;
+		width: 70px;
+		background: url('../img/off.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+	.btnpush:active{
+		height: 70px;
+		width: 70px;
+		background: url('../img/on.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+	.btntoggle{
+		color: white;
+		height: 70px;
+		width: 70px;
+		background: url('../img/off_strong.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+	.btntoggled{
+		color: black;
+		height: 70px;
+		width: 70px;
+		background: url('../img/on_strong.png') no-repeat;
+		background-size: cover;
+		cursor: pointer;
+		border: none;
+	}
+	.card-heading{
+		font-size:8px; 
+		font-weight:bold;
+	}
+}
+

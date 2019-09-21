@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>HVL Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="{{url_for('static', filename = 'onsenui/css/onsenui.css' )}}">
   <link rel="stylesheet" href="{{url_for('static', filename = 'onsenui/css/onsen-css-components.min.css')}}">
@@ -21,7 +23,7 @@
       </ons-toolbar>
       <div style="text-align: center; margin-top: 30px;">
         <p>
-          <ons-input id="hostname" modifier="underbar" placeholder="Host IP" value="192.168.2.50" float></ons-input>
+          <ons-input id="hostname" modifier="underbar" placeholder="Host IP" value="192.168.2.38" float></ons-input>
         </p>
         <p>
           <ons-input id="port" modifier="underbar" type="text" placeholder="Port" value="5000" float></ons-input>
@@ -69,73 +71,62 @@
         </div>
         <div class="center"></div>
       </ons-toolbar>
+      <ons-row>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="MS" id="ms" class="btntoggle noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+        <ons-col>
+          <ons-card>
+            <div style="text-align:center">
+              <input type="button" name="button" value="Nothing" onclick="" class="btnpush noselect"/>
+            </div>
+          </ons-card>
+        </ons-col>
+      </ons-row>
       <div style="text-align: center;">
-       <ons-list>
-          <ons-list-item>
-            <div class="center">
-              <b>MAIN SWITCH(gp11)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>VOLT INC MODE(gp10)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>MEMORY(gp4)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>HT START(gp9)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>INC VOLT(gp27)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>DEC VOLT(gp22)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>HT STOP(gp17)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-          <ons-list-item>
-            <div class="center">
-              <b>Test LED(gp16)</b>
-            </div>
-            <div class="right">
-              <ons-switch modifier="material"></ons-switch>
-            </div>
-          </ons-list-item>
-       </ons-list>
         <div id="reading" style="text-align : center; margin-top: 10px;display:none;">
           <h1 style="font-size: 54px; color:green;">N/A</h1>
         </div>
