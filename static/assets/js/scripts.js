@@ -68,7 +68,8 @@ document.addEventListener('init', function(event) {
       //status of switches
       switches = []
       //test = $('#led');
-      memorychange = 0
+      memorychange = 0;
+      mainswitchchange = 0;
       memory.on('click', function(){
         load();
         obj = {secret : secret} ;
@@ -108,34 +109,47 @@ document.addEventListener('init', function(event) {
       mainswitch.on('click', function(e){
         obj = {pin : mainswitchpin, secret : secret} ;
         load();
-        $.ajax({
-            url: 'http://'+hostname+':'+port+'/toggle',
-            crossDomain: true,
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify(obj),
-            async: true,
-            success: function(data){
-                if(!data.hasOwnProperty('err') && data.success == '1'){
-                    $('#ms').toggleClass("btntoggled"); 
-                    voltincm.attr("disabled", false);
-                    memory.attr("disabled", false);
-                    htstart.attr("disabled", false);
-                    incvolt.attr("disabled", false);
-                    decvolt.attr("disabled", false);
-                    htstop.attr("disabled", false);
-                    loaded();
-                }else{
-                    ons.notification.alert('Something went Wrong!');
-                    loaded();
+        if(mainswitchchange == 0){
+            $.ajax({
+                url: 'http://'+hostname+':'+port+'/toggle',
+                crossDomain: true,
+                type: "POST",
+                dataType: "json",
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                async: true,
+                success: function(data){
+                    if(!data.hasOwnProperty('err') && data.success == '1'){
+                        $('#ms').toggleClass("btntoggled"); 
+                        voltincm.attr("disabled", false);
+                        memory.attr("disabled", false);
+                        htstart.attr("disabled", false);
+                        incvolt.attr("disabled", false);
+                        decvolt.attr("disabled", false);
+                        htstop.attr("disabled", false);
+                        mainswitchchange = 1;
+                        loaded();
+                    }else{
+                        ons.notification.alert('Something went Wrong!');
+                        loaded();
+                    }
+                },
+                error: function(error){
+                     ons.notification.alert('Device is offline!');
+                     loaded();
                 }
-            },
-            error: function(error){
-                 ons.notification.alert('Device is offline!');
-                 loaded();
-            }
-        });
+            });
+        }else{
+            mainswitchchange = 0;
+            voltincm.attr("disabled", true);
+            memory.attr("disabled", true);
+            htstart.attr("disabled", true);
+            incvolt.attr("disabled", true);
+            decvolt.attr("disabled", true);
+            htstop.attr("disabled", true);
+            mainswitch.toggleClass("btntoggled"); 
+            loaded();
+        }
         e.preventDefault();
     });
     voltincm.on('click', function(e){
