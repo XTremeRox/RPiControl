@@ -64,6 +64,18 @@ document.addEventListener('init', function(event) {
         $('#ms').toggleClass("btntoggled"); 
         e.preventDefault();
     });
+      $('#memory_button').on('click', function(e) {
+        $('#memory_button').toggleClass("btntoggled"); 
+        e.preventDefault();
+    });
+      $('#dec_volt').on('click', function(e) {
+        $('#dec_volt').toggleClass("btntoggled"); 
+        e.preventDefault();
+    });
+      $('#inc_volt_mode').on('click', function(e) {
+        $('#inc_volt_mode').toggleClass("btntoggled"); 
+        e.preventDefault();
+    });
       memorychange = 0
       memory.addEventListener('change', function(){
         load();
