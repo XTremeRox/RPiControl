@@ -138,9 +138,128 @@ document.addEventListener('init', function(event) {
         });
         e.preventDefault();
     });
-    
+    voltincm.on('click', function(e){
+        obj = {pin : voltincmpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    voltincm.toggleClass("btntoggled"); 
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+                 loaded();
+            }
+        });
+        e.preventDefault();
+    });
+    decvolt.on('click', function(e){
+        obj = {pin : decvoltpin, secret : secret} ;
+        load();
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/toggle',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                    decvolt.toggleClass("btntoggled"); 
+                    loaded();
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                    loaded();
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+                 loaded();
+            }
+        });
+        e.preventDefault();
+    });
+    htstart.on('click', function(e){
+        obj = {pin : htstartpin, secret : secret} ;
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/holdpush',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
+        e.preventDefault();
+    });
+    htstop.on('click', function(e){
+        obj = {pin : htstopin, secret : secret} ;
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/holdpush',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
+        e.preventDefault();
+    });
+    incvolt.on('click', function(e){
+        obj = {pin : incvoltpin, secret : secret} ;
+        $.ajax({
+            url: 'http://'+hostname+':'+port+'/holdpush',
+            crossDomain: true,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            async: true,
+            success: function(data){
+                if(!data.hasOwnProperty('err') && data.success == '1'){
+                }else{
+                    ons.notification.alert('Something went Wrong!');
+                }
+            },
+            error: function(error){
+                 ons.notification.alert('Device is offline!');
+            }
+        });
+        e.preventDefault();
+    });
       pins = [11,10,5,9,27,22,17,16];
-      //todo - $ajax-status of all switches
+      //TODO - $ajax-status of all switches
       //$.ajax({
         //url: 'http://'+hostname+':'+port+'/status',
         //type: "GET",

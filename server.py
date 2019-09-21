@@ -6,6 +6,7 @@
 from flask import Flask, request , jsonify, render_template
 import RPi.GPIO as GPIO
 import time
+from time import sleep
 import board
 import busio
 import adafruit_ads1x15.ads1115 as ADS
@@ -68,6 +69,28 @@ def push():
 	read = reading()
 	GPIO.output(5, GPIO.LOW) #memory_relay high
 	return read
+@app.route('/holdpush', methods=['GET'])
+def holdpush():
+	#hold pin for 100ms and reset it and wait for another request
+	#change pin state and authentication using POST
+	content = request.get_json(silent=True)
+	if content['secret'] != secretpasskey:
+		return jsonify({'error':'Not a valid Request'})
+	pin = content['pin']
+	allowedpins = [9,17,27]
+	if pin.isdigit():
+		pin = int(pin)
+		if pin not in allowedpins:
+			return jsonify({'error':'not a valid pin'})
+		GPIO.output(pin, GPIO.HIGH)
+		sleep(0.1)
+		GPIO.output(pin, GPIO.LOW)
+	else:
+		return jsonify({'error':'not a valid pin'})
+	data = {'success':'1'}
+	response = jsonify(data)
+	#response.headers.add('Access-Control-Allow-Origin', '*')
+	return response
 @app.route('/toggle', methods=['POST'])
 def toggle():
 	#change pin state and authentication using POST
@@ -75,7 +98,7 @@ def toggle():
 	if content['secret'] != secretpasskey:
 		return jsonify({'error':'Not a valid Request'})
 	pin = content['pin']
-	allowedpins = [11,10,5,9,27,22,17,16]
+	allowedpins = [11,10,5,27,16]
 	if pin.isdigit():
 		pin = int(pin)
 		if pin not in allowedpins:
