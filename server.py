@@ -69,7 +69,7 @@ def push():
 	read = reading()
 	GPIO.output(5, GPIO.LOW) #memory_relay high
 	return read
-@app.route('/holdpush', methods=['GET'])
+@app.route('/holdpush', methods=['POST'])
 def holdpush():
 	#hold pin for 100ms and reset it and wait for another request
 	#change pin state and authentication using POST
@@ -83,7 +83,7 @@ def holdpush():
 		if pin not in allowedpins:
 			return jsonify({'error':'not a valid pin'})
 		GPIO.output(pin, GPIO.HIGH)
-		sleep(0.1)
+		z = push()
 		GPIO.output(pin, GPIO.LOW)
 	else:
 		return jsonify({'error':'not a valid pin'})
