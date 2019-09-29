@@ -66,10 +66,7 @@ website: https://soren.in */
 }
 
 .led-green {
-	margin-top: 0;
-	margin-bottom: 0;
-	margin-right: 0;
-	margin-left: auto;
+	float: right;
     width: 24px;
     height: 24px;
     background-color: #ABFF00;
@@ -78,6 +75,9 @@ website: https://soren.in */
     transition:0.5s ease;-moz-transition:0.5s ease;-webkit-transition:0.5s ease;
 }
 .led-red{
+	float: right;
+	width: 24px;
+    height: 24px;
 	background-color: red;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
 	transition:0.5s ease;-moz-transition:0.5s ease;-webkit-transition:0.5s ease;
