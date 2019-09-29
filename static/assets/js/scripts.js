@@ -238,6 +238,11 @@ document.addEventListener('init', function(event) {
             async: true,
             success: function(data){
                 if(!data.hasOwnProperty('err') && data.success == '1'){
+                    $('#reading').find('h1')[0].innerHTML=data.reading;
+                    $("#reading").toggle();
+                    setTimeout(function() {
+                        $('#reading').fadeOut('fast');
+                    }, 300); //
                 }else{
                     ons.notification.alert('Something went Wrong!');
                 }
