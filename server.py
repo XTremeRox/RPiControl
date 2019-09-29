@@ -58,7 +58,7 @@ def reading():
 	for i in range(0,30):
 		sum+=channel.value
 	avg = str('%.4f'%(sum/30))
-	return jsonify({'reading':avg})
+	return avg
 @app.route('/push', methods=['POST'])
 def push():
 	#Get pushrequest and activate for 30 reading and set state to 0 and return reading
@@ -68,7 +68,7 @@ def push():
 	GPIO.output(5, GPIO.HIGH) #memory_relay high
 	read = reading()
 	GPIO.output(5, GPIO.LOW) #memory_relay high
-	return read
+	return jsonify({'reading':read})
 @app.route('/holdpush', methods=['POST'])
 def holdpush():
 	#hold pin for 100ms and reset it and wait for another request
@@ -78,16 +78,17 @@ def holdpush():
 		return jsonify({'error':'Not a valid Request'})
 	pin = content['pin']
 	allowedpins = [9,17,27]
+	z = ''
 	if pin.isdigit():
 		pin = int(pin)
 		if pin not in allowedpins:
 			return jsonify({'error':'not a valid pin'})
 		GPIO.output(pin, GPIO.HIGH)
-		z = push()
+		z = reading()
 		GPIO.output(pin, GPIO.LOW)
 	else:
 		return jsonify({'error':'not a valid pin'})
-	data = {'success':'1'}
+	data = {'success':'1', 'reading':z}
 	response = jsonify(data)
 	#response.headers.add('Access-Control-Allow-Origin', '*')
 	return response
