@@ -29,40 +29,60 @@ website: https://soren.in */
 }
 
 .btnpush{
-		height: 150px;
-		width: 150px;
-		background: url('../img/off.png') no-repeat;
-		background-size: cover;
-		cursor: pointer;
-		border: none;
-	}
+	height: 150px;
+	width: 150px;
+	background: url('../img/off.png') no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	border: none;
+}
 .btnpush:active{
-		height: 150px;
-		width: 150px;
-		background: url('../img/on.png') no-repeat;
-		background-size: cover;
-		cursor: pointer;
-		border: none;
+	height: 150px;
+	width: 150px;
+	background: url('../img/on.png') no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	border: none;
 }
 
 .btntoggle{
-		color: white;
-		height: 150px;
-		width: 150px;
-		background: url('../img/off_strong.png') no-repeat;
-		background-size: cover;
-		cursor: pointer;
-		border: none;
-	}
-.btntoggled{
-		color: black;
-		height: 150px;
-		width: 150px;
-		background: url('../img/on_strong.png') no-repeat;
-		background-size: cover;
-		cursor: pointer;
-		border: none;
+	color: white;
+	height: 150px;
+	width: 150px;
+	background: url('../img/off_strong.png') no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	border: none;
 }
+
+.btntoggled{
+	color: black;
+	height: 150px;
+	width: 150px;
+	background: url('../img/on_strong.png') no-repeat;
+	background-size: cover;
+	cursor: pointer;
+	border: none;
+}
+
+.led-green {
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+	margin-left: auto;
+    width: 24px;
+    height: 24px;
+    background-color: #ABFF00;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+    transition:0.5s ease;-moz-transition:0.5s ease;-webkit-transition:0.5s ease;
+}
+.led-red{
+	background-color: red;
+	box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+	transition:0.5s ease;-moz-transition:0.5s ease;-webkit-transition:0.5s ease;
+}
+
 /* Use a media query to add a breakpoint at 800px: */
 @media screen and (max-width: 600px) {
 #loading-image {
